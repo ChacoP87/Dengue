@@ -4,6 +4,14 @@
 import os
 import sys
 from django.core.wsgi import get_wsgi_application
+from vercel import handler
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Denge.settings")
+    
+app = get_wsgi_application()
+
+# Agrega esto para la compatibilidad con Vercel
+handler(app)
 
 def main():
     """Run administrative tasks."""
@@ -21,10 +29,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Denge.settings")
-    
-    app = get_wsgi_application()
-
-    # Agrega esto para la compatibilidad con Vercel
-    from vercel import handler
-    handler(app)
