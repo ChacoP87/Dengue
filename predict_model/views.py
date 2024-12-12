@@ -17,22 +17,14 @@ def predictionView(request):
     if request.method == 'GET':
         
         data = request.data
-        ailments = data.get('ailments')
+        enviroment = data.get('enviroment')
         
         model = joblib.load('model.joblib')
         
-        '''
-        model = Perceptron()
-        model.t_= 490153.0
-        model.coef_= np.array([2, 4, 1, -10, 11, 5, 3])
-        model.coef_.T = np.array([2, 4, 1, -10, 11, 5, 3])
-        model.intercept_ = np.array([-4])
-        '''
-        
-        predict = model.predict([ailments])
+        predict = model.predict([enviroment])
         
         response_data = {
-            'prediction': predict[0],
+            'clasification': predict[0],
         }
         return Response(data=response_data, status=status.HTTP_200_OK)
         
