@@ -3,7 +3,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+from django.core.wsgi import get_wsgi_application
 
 def main():
     """Run administrative tasks."""
@@ -18,8 +18,9 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
-    from django.core.wsgi import get_wsgi_application
 
+if __name__ == '__main__':
+    main()
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Denge.settings")
     
     app = get_wsgi_application()
@@ -27,7 +28,3 @@ def main():
     # Agrega esto para la compatibilidad con Vercel
     from vercel import handler
     handler(app)
-
-
-if __name__ == '__main__':
-    main()
