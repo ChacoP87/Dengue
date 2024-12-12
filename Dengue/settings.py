@@ -126,3 +126,12 @@ if not DEBUG:
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+if __name__ == "__main__":
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Denge.settings")
+    
+    application = get_wsgi_application()
+
+    # Agrega esto para la compatibilidad con Vercel
+    from vercel import handler
+    handler(application)
