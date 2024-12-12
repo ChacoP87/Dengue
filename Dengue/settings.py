@@ -133,4 +133,4 @@ app = get_wsgi_application()
 
 # Agrega esto para la compatibilidad con Vercel
 from vercel import handler
-handler(application)
+handler(app)
